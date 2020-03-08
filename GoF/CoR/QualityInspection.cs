@@ -10,7 +10,7 @@ namespace GoF.CoR
 {
     public class QualityInspection : AssemblyHandlerBase, IQualityObservable
     {
-        private int qualityThreshold = 8;
+        private int qualityThreshold = 6;
         protected EventHandler<AssemblyItem> ClearedInspectionHandler { get; set; }
         protected EventHandler<AssemblyItem> FailedInspectionHandler { get; set; }
         public QualityInspection() : base() { }
@@ -27,12 +27,11 @@ namespace GoF.CoR
 
             if (quality >= qualityThreshold*works.Count)
             {
-                ClearedInspectionHandler.Invoke(this, item);
-                if (successor != null)
-                    successor.HandleRequest(item);
+                ClearedInspectionHandler?.Invoke(this, item);
+                successor?.HandleRequest(item);
             }
             else
-                FailedInspectionHandler(this, item);
+                FailedInspectionHandler?.Invoke(this, item);
 
         }
 

@@ -19,7 +19,8 @@ namespace GoF
         {
             assemblyHandler = new AssemblyLogger("Logger");
             // SetSuccessor returns the added successor to allow nicer syntax for setting up the chain.
-            assemblyHandler.SetSuccessor(new WeldStation())
+            assemblyHandler
+                .SetSuccessor(new WeldStation())
                 .SetSuccessor(new GlueStation())
                 .SetSuccessor(new AssemblyLogger("Peeker"))
                 .SetSuccessor(new QualityInspection(this));
@@ -34,7 +35,7 @@ namespace GoF
             {
                 assemblyHandler.HandleRequest(new AssemblyItem());
             }
-            Console.WriteLine("\nListing items that cleared final inspection:");
+            Console.WriteLine($"\n{clearedInspection.Count} out of {testSize} items cleared inspection.\nListing items that cleared final inspection:");
             foreach (AssemblyItem item in clearedInspection)
                 Console.WriteLine(item);
         }

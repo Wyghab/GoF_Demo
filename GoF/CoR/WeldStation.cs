@@ -18,8 +18,7 @@ namespace GoF.CoR
         {
             if (item.RequiresTask(WorkType.WeldWork))
                 item.PerformTask(new Work(random.Next(randomMin, randomMax+1), WorkType.WeldWork));
-            if (successor != null)
-                successor.HandleRequest(item);
+            successor?.HandleRequest(item);
         }
     }
 }

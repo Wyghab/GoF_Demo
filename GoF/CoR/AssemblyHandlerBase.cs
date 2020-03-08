@@ -9,7 +9,7 @@ namespace GoF.CoR
 {
     public abstract class AssemblyHandlerBase
     {
-        protected AssemblyHandlerBase successor;
+        protected AssemblyHandlerBase successor = null;
 
         public AssemblyHandlerBase() { }
         public AssemblyHandlerBase(AssemblyHandlerBase successor)

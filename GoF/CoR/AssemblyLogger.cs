@@ -15,8 +15,7 @@ namespace GoF.CoR
         public override void HandleRequest(AssemblyItem item)
         {
             Console.WriteLine($"{name}: Received item.\n{item}");
-            if (successor != null)
-                successor.HandleRequest(item);
+            successor?.HandleRequest(item);
         }
     }
 }

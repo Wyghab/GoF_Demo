@@ -9,14 +9,16 @@ namespace GoF.CoR
 {
     public class GlueStation : AssemblyHandlerBase
     {
-        public GlueStation() : base() { }
-        public GlueStation(AssemblyHandlerBase successor) : base(successor) { }
+        protected Random random;
+        private const int randomMin = 0;
+        private const int randomMax = 10;
+        public GlueStation() : base() { random = new Random(); }
+        public GlueStation(AssemblyHandlerBase successor) : base(successor) { random = new Random(); }
         public override void HandleRequest(AssemblyItem item)
         {
             if (item.RequiresTask(WorkType.GlueWork))
-                item.PerformTask(new Work(10, WorkType.GlueWork));
-            if (successor != null)
-                successor.HandleRequest(item);
+                item.PerformTask(new Work(random.Next(randomMin, randomMax+1), WorkType.GlueWork));
+            successor?.HandleRequest(item);
         }
     }
 }
